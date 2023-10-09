@@ -1,0 +1,32 @@
+{% extends 'auth/base.html' %}
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="clo-12">
+            <div class="alert alert-info">this is home page</div>
+
+            {% if user.is_authenticated %} 
+            
+                Hi {{ user.full_name }}, Welcome to My site!
+                <a href="logout/" class="btn btn-danger">Logout</a> 
+
+            {% else %}
+
+                You are not logged in!
+                <br>
+                <a href="{% url 'login' %}" class="btn btn-primary mt-3">
+                    Log In
+                </a>
+                <a href="{% url 'signup' %}" class="btn btn-primary mt-3">
+                    SignUp
+                </a>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

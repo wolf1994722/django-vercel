@@ -1,0 +1,36 @@
+{% extends 'auth/base.html' %}
+
+{% block title %}Singup{% endblock title %} 
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="clo-12">
+            <div class="alert alert-info">this is Singup page</div>
+
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Home</a>
+            <a href="{% url 'login' %}" class="btn btn-primary mt-3">Login</a>
+
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: green">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        </p><p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                <p></p>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary mt-3">Sign up </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
